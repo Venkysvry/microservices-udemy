@@ -1,6 +1,8 @@
 package com.trainerservice.controller;
 
+import java.text.ParseException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.trainerservice.entity.TrainerApiResponse;
 import com.trainerservice.entity.TrainerEntity;
 import com.trainerservice.serviceImpl.TrainerServiceImpl;
 
@@ -28,8 +31,8 @@ public class TrainerController {
 	}
 
 	@GetMapping("/getByCourse/{coursename}")
-	public ResponseEntity<TrainerEntity> getTrainerDetails(@PathVariable String coursename) {
-		TrainerEntity gettrainer = impl.getTrainer(coursename);
+	public ResponseEntity<TrainerApiResponse> getTrainerDetails(@PathVariable String coursename) {
+		TrainerApiResponse gettrainer = impl.getTrainer(coursename);
 		return ResponseEntity.ok(gettrainer);
 	}
 	@GetMapping("/getByDateRange/{startdate}/{enddate}")
@@ -37,5 +40,15 @@ public class TrainerController {
 		List<TrainerEntity> gettrainer = impl.getListInDateRange(startdate, enddate);
 		return ResponseEntity.ok(gettrainer);
 	}
+	@GetMapping("/noofdays/{start}/{end}")
+	public Long getNoDays(@PathVariable String start,@PathVariable String end) {
+		try {
+			return impl.getNodaya(start, end);
+		} catch (ParseException e) {
+			
+			e.printStackTrace();
+		}return null;
+	}
+	
 
 }

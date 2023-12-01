@@ -23,6 +23,7 @@ public class TrainerEntity {
 	@Column(name="endDate")
 	private LocalDate endDate;
 	private int noOfBatches;
+	
 
 	public TrainerEntity() {
 
@@ -37,7 +38,10 @@ public class TrainerEntity {
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.noOfBatches = noOfBatches;
+		
 	}
+
+	
 
 	public Long getId() {
 		return id;
