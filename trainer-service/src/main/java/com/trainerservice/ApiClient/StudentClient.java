@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import com.trainerservice.entity.StudentEntity;
 
 
-@FeignClient(url = "http://localhost:8535",name ="STUDENT-SERVICE" )
+@FeignClient(name ="STUDENT-SERVICE" )
 public interface StudentClient {
 	@GetMapping("/studentcontroller/findBytech/{id}")
 	 List<StudentEntity> getByTech(@PathVariable String id);
